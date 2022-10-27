@@ -21,3 +21,11 @@ class matrix():
             print(row)
         print('\n')
 
+class point():
+    """
+    object to hold the coordinates, see if necessary
+    """
+    def __init__(self):
+        pass
+    def get_value(self):#
+        pass

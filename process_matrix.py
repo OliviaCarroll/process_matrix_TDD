@@ -28,7 +28,7 @@ def process_matrix(matrix) -> matrix:
     # return the new matrix TODO change to processed_matrix
     return matrix
 
-def process_element(coordinate, matrix) -> float: # check it needs coordinate!
+def process_element(coordinate, matrix) -> float: # check it needs coordinate
     """
     Receives a coordinate, and the original matrix,
     calculates the average of the element at the coodinate and its neighbours
@@ -40,25 +40,28 @@ def process_element(coordinate, matrix) -> float: # check it needs coordinate!
     average = round(get_average(items), 2)
     return average
     
-def get_valid_neighbour_indices(coordinate, matrix) -> list:
+def get_valid_neighbour_indices(coordinate: list, grid: list) -> list:
     """
     Receives a coordinate and the matrix,
     validates that coordinates exist on grid 
     returns a list of valid neighbour coordinates 
     possibly where each coordinate pair is of type point 
     """
+    all_indices = [] ## always 5 coordinates
+    
+    valid_indices = []
     pass
 
-def get_neighbour_values(indices: list, matrix: matrix) -> tuple:
+def get_neighbour_values(indices: list, grid: list) -> list: #
     """
     Receives a list of coordinates (of a position and its neighbouring elements) and a matrix,
     returns a tuple of the associated values
     """
     all_values = []
     for coord in indices:
-        value = matrix[coord[0]][coord[1]]
+        value = grid[coord[0]][coord[1]] ##TODO refactor this
         all_values.append(value)
-    return tuple(all_values)
+    return all_values
 
 def get_average(numbers: tuple) -> float:
     """

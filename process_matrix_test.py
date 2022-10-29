@@ -1,5 +1,4 @@
 import pytest
-from functools import reduce
 from process_matrix import get_average, get_neighbour_values, get_valid_neighbour_indices
 '''
 def test_process_matrix():
@@ -34,8 +33,8 @@ def test_get_neighbour_values():
     assert get_neighbour_values([[0,0],[1,0]], test_matrix3) == [1,3]
     assert get_neighbour_values([[0,1],[0,0],[0,2]], test_matrix4) == [2,1,3]
 
-
 def test_get_valid_neighbour_indices():
+    test_grid0 = [[0,0]]
     test_matrix1 = [[1, 1, 1],
                     [2, 1 ,1],
                     [1, 1, 1]]
@@ -45,6 +44,7 @@ def test_get_valid_neighbour_indices():
                     [3]]
     test_matrix4 = [[1,2,3]]
 
+    assert get_valid_neighbour_indices([0,0], test_grid0) == [[0,0]]
     assert get_valid_neighbour_indices([0,0], test_matrix1) == [[0,0],[0,1],[1,0]]
-    ## TODO test on a randomly generated matrix,  maybe just test for the length of the returned array
     assert get_valid_neighbour_indices([1,1], test_matrix1) == [[0,0],[0,1],[1,0]]
+

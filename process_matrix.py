@@ -2,10 +2,10 @@ from functools import reduce
 from Matrix import Matrix
 from Point import Point
 
-## en vez de devolver una matriz en condiciones normales y una cadena cuando la cosa se escacharra, 
-## devuelve siempre una matriz, y si hay error, lanza una excepción.
 def process_matrix(matrix: Matrix) -> Matrix:
-    # checks that what is passed in is correct, if not raise exception
+    """
+    Receives matrix, processes it if of type Matrix
+    """
     if is_numerical_matrix(matrix):
         return _process_matrix(matrix)
     else:
@@ -18,7 +18,6 @@ def _process_matrix(matrix) -> Matrix:
     Each element in the new matrix will be the average of the elements' original value and the values of its immediate neighbours,
     i.e. not including diagonals
     """
-    # creates variable to store the processed matrix
     new_grid = []
     # for each row in the matrix grid
     for x, row in enumerate(matrix.grid):
@@ -28,7 +27,6 @@ def _process_matrix(matrix) -> Matrix:
             # process element
             point = Point(x, y)
             processed_point = process_element(point, matrix)
-            # add to the new matrix in the correct position
             new_row.append(processed_point)
         new_grid.append(new_row)    
     matrix.grid = new_grid
@@ -36,7 +34,7 @@ def _process_matrix(matrix) -> Matrix:
 
 def is_numerical_matrix(matrix) -> bool:
     """
-    Checks that matrix is a valid matrix
+    Checks that the argument passed to process_matrix is an instance of Matrix
     """
     return type(matrix) == Matrix
 
@@ -85,42 +83,22 @@ def get_valid_neighbours(indices: list, matrix: Matrix) -> list:
         if point.x >= 0 and point.x < matrix.num_columns:
             if point.y >= 0 and point.y < matrix.num_rows:
                 valid_points.append(point)
-    
-    print("get_valid_neighbours")
-    print_list_of_points(valid_points)
-    print("")
     return valid_points
 
-def get_neighbour_values(indices: list, matrix: Matrix) -> list: #
+def get_neighbour_values(indices: list, matrix: Matrix) -> list:
     """
     Receives a list of coordinates (of a position and its neighbouring elements) and a matrix,
     returns a list of the associated values
     """
     all_values = []
     for point in indices:
-        print("get_neighbour_values:")
-        print("Point x: ", point.x)
-        print("Point y: ", point.y)
-        print("")
-        try:
             value = matrix.get_element_value(point)
             all_values.append(value)
-        except:
-            print("Error found with point:")
-            print("X: ", point.x)
-            print("Y: ", point.y)
-            print("")
-        
     return all_values
 
 def get_average(numbers: list) -> float:
     """
     Receives a list of numbers
-    and returns their average/mean
+    and returns their average/mean rounded to 2 decimal places
     """
     return round(reduce(lambda accum, i: (accum + i), numbers, 0)/len(numbers), 2)
-
-def print_list_of_points(list: list):
-    for item in list:
-        item.print_point()
-

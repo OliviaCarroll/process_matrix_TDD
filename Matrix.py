@@ -15,12 +15,4 @@ class Matrix():
         print('\n')
     
     def get_element_value(self, point):
-        print("get_element_value:")
-        print("Grid x: ", self.num_columns)
-        print("")
-        print("Grid y: ", self.num_rows)
-        print("")
-        print("Point x: ", point.x)
-        print("Point y: ", point.y)
-        print("")
         return self.grid[point.x][point.y]

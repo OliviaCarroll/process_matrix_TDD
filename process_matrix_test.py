@@ -11,7 +11,7 @@ def test_get_average_passed_empty_list_throws_exception():
         assert get_average([])
 
 '''
-## tests don't pass, look in to mocking
+## Look in to mocking to pass randomness in as dependency...
 def test_get_neighbour_values():
     test_matrix1 = [[1, 1, 1],
                     [2, 1 ,1],
